@@ -7,17 +7,13 @@ class CategoryItem extends React.Component {
     super(props);
     this.state = {
       category: this.props.category ? this.props.category : {},
+      expense: this.props.expense ? this.props.category : {},
       editing: false,
     };
 
-    // this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEditing = this.handleEditing.bind(this);
   };
-
-  // handleClick() {
-  //   this.props.onDelete(Object.assign({}, this.state));
-  // };
 
   handleDelete() {
     this.props.onDelete(this.state.category);
@@ -33,7 +29,6 @@ class CategoryItem extends React.Component {
         className='category-item'
         key={this.state.category.id}
         onDoubleClick={this.handleEditing}>
-        {console.log(this.state.category)}
         <p>Category: {this.state.category.title}</p>
         <button onClick={this.handleDelete}>delete category</button>
         {renderIf(this.state.editing,
@@ -41,7 +36,7 @@ class CategoryItem extends React.Component {
             category={this.state.category}
             toggleEdit={this.handleEditing} 
             buttonText='update'
-            onSubmit={this.props.onUpdate}/>
+            onUpdate={this.props.onUpdate}/>
         )}
       </li>
     );

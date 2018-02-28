@@ -17,9 +17,15 @@ class CategoryForm extends React.Component {
   }
 
   handleSubmit(e) {
+    console.log('handlesubmit', this.props.category);
+    console.log('e.target:', e.target);
     e.preventDefault();
-    // if(e.target.onClick)
-    this.props.onComplete(Object.assign({}, this.state));
+    if(!this.props.category) this.props.onComplete(Object.assign({}, this.state));
+    if(e.target.buttonText === 'update') {
+      console.log('hit update');
+      this.props.onUpdate(this.props.category);
+      this.props.toggleEdit();
+    }
     this.setState({title: ''});
   }
 
