@@ -7,7 +7,6 @@ class CategoryForm extends React.Component {
       ? this.props.category
       : { //IN CASE SOMETHING IS NOT PASSED DOWN THROUGH PROPS
         title: '',
-        editing: false,
       };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);  
@@ -19,7 +18,8 @@ class CategoryForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onComplete(this.state);
+    // if(e.target.onClick)
+    this.props.onComplete(Object.assign({}, this.state));
     this.setState({title: ''});
   }
 

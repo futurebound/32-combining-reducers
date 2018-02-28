@@ -14,19 +14,20 @@ class Dashboard extends React.Component {
         <CategoryForm
           buttonText='create'
           onComplete={this.props.categoryCreate} />
-
-        {this.props.categories ?
-          this.props.categories.map(category =>
-            <CategoryItem
-              key={category.id}
-              title={category.title}
-              className='category-item'
-              buttonText='update'
-              onComplete={this.props.categoryUpdate}/>
-          )
-          :
-          undefined
-        }
+        <ul>
+          {this.props.categories ?
+            this.props.categories.map(category =>
+              <CategoryItem
+                key={category.id}
+                category={category}
+                title={category.title}
+                onUpdate={this.props.categoryUpdate}
+                onDelete={this.props.categoryDelete}/>
+            )
+            :
+            undefined
+          }
+        </ul>
       </section>
     );
   }
