@@ -21,12 +21,15 @@ export default (state=initialState, action) => { //initialState basically for pa
     // return {...changedState};
 
   case 'EXPENSE_CREATE': 
-    let categoryState = { ...state };
-    categoryState[payload.id] = categoryState[payload.id].push(payload);
+    // let categoryState = {...state};
+    // // categoryState[payload.id] = categoryState[payload.id].push(payload);
     // categoryState[payload.id].push(payload);
-    return categoryState;
-  case 'EXPENSE_UPDATE': return ; //TODO
-  case 'EXPENSE_DELETE': return ; //TODO
+    // return categoryState;
+    state[payload.categoryId] = state[payload.categoryId].concat([payload]);
+    return {...state};
+  case 'EXPENSE_UPDATE': return state[payload.categoryId].map(
+    expense => expense.id === payload.id ? payload : expense);
+  case 'EXPENSE_DELETE': return state[payload.categoryId].filter(expense => expense.id !== payload.id);
   case 'EXPENSE_RESET': return initialState;
   default: return state;
   }

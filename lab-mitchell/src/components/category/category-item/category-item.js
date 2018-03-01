@@ -6,6 +6,7 @@ import {categoryUpdate} from '../../../actions/category-actions';
 import {categoryDelete} from '../../../actions/category-actions';
 import ExpenseForm from '../../expense/expense-form/expense-form';
 import {expenseCreate} from '../../../actions/expense-actions';
+import ExpenseItem from '../../expense/expense-item/expense-item';
 
 class CategoryItem extends React.Component {
   constructor(props) {
@@ -44,10 +45,15 @@ class CategoryItem extends React.Component {
         )}
 
         <ExpenseForm
+          categoryId={this.props.category.id}
           buttonText='create expense'
           onComplete={this.props.expenseCreate}/>
 
-        {this.props.expenses ?
+
+        {renderIf(this.props.expenses[this.props.category.id],
+          this.props.expenses[this.props.category.id].map(expense => <ExpenseItem key={expense.id} expense={expense} />)
+        )}
+        {/* {this.props.expenses ?
           this.props.expenses[this.props.category.id].map(expense =>
             <ExpenseItem
               expense={expense}
@@ -55,7 +61,7 @@ class CategoryItem extends React.Component {
           )
           :
           undefined
-        }
+        } */}
       </div>
     );
   };

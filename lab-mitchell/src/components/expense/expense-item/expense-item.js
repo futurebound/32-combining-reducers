@@ -19,7 +19,7 @@ class ExpenseItem extends React.Component {
   };
 
   handleDelete() {
-    this.props.onDelete(this.state.expense);
+    this.props.expenseDelete(this.state.expense);
   };
 
   handleEditing() {
@@ -38,9 +38,8 @@ class ExpenseItem extends React.Component {
         {renderIf(this.state.editing,
           <ExpenseForm
             expense={this.state.expense}
-            toggleEdit={this.handleEditing}
             buttonText='update'
-            onUpdate={this.props.onUpdate} />
+            onComplete={this.props.expenseUpdate} />
         )}
       </li>
     );

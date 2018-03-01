@@ -8,6 +8,7 @@ class ExpenseForm extends React.Component {
       : {
         name: '',
         cost: '',
+        categoryId: this.props.categoryId,
         editing: false,
       };
     this.handleChange = this.handleChange.bind(this);
