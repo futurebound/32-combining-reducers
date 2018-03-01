@@ -1,6 +1,10 @@
 import React from 'react';
-import { renderIf } from '../../../lib/utils';
+import {connect} from 'react-redux';
+import {renderIf} from '../../../lib/utils';
 import ExpenseForm from '../expense-form/expense-form';
+import {expenseUpdate} from '../../../actions/expense-actions';
+import {expenseDelete} from '../../../actions/expense-actions';
+
 
 class ExpenseItem extends React.Component {
   constructor(props) {
@@ -26,9 +30,10 @@ class ExpenseItem extends React.Component {
     return (
       <li
         className='expense-item'
-        key={this.state.expense.id}
+        key={this.props.expense.id}
         onDoubleClick={this.handleEditing}>
-        <p>Expense: {this.state.expense.title}</p>
+        <p>Name: {this.props.expense.name}</p>
+        <p>Cost: {this.props.expense.cost}</p>
         <button onClick={this.handleDelete}>delete expense</button>
         {renderIf(this.state.editing,
           <ExpenseForm
@@ -37,23 +42,18 @@ class ExpenseItem extends React.Component {
             buttonText='update'
             onUpdate={this.props.onUpdate} />
         )}
-        <ul>
-          {this.props.expenses ?
-            this.props.expenses.map(expense =>
-              <ExpenseItem
-                key={expense.id}
-                expense={expense}
-                title={expense.title}
-                onUpdate={this.props.expenseUpdate}
-                onDelete={this.props.expenseDelete} />
-            )
-            :
-            undefined
-          }
-        </ul>
       </li>
     );
   };
 }
 
-export default ExpenseItem;
+const mapStateToProps = state => ({
+  expenses: state,
+});
+
+const mapDispatchToProps = (dispatch, getState) => ({
+  expenseUpdate: expense => dispatch(expenseUpdate(expense)),
+  expenseDelete: expense => dispatch(expenseDelete(expense)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseItem);

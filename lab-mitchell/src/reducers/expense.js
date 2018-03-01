@@ -20,7 +20,11 @@ export default (state=initialState, action) => { //initialState basically for pa
     return changedState;
     // return {...changedState};
 
-  case 'EXPENSE_CREATE': return ; //TODO
+  case 'EXPENSE_CREATE': 
+    let categoryState = { ...state };
+    categoryState[payload.id] = categoryState[payload.id].push(payload);
+    // categoryState[payload.id].push(payload);
+    return categoryState;
   case 'EXPENSE_UPDATE': return ; //TODO
   case 'EXPENSE_DELETE': return ; //TODO
   case 'EXPENSE_RESET': return initialState;
