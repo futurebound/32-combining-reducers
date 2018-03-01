@@ -33,9 +33,8 @@ class CategoryItem extends React.Component {
     return (
       <div
         className='category-item'
-        key={this.props.category.id}
-        onDoubleClick={this.handleEditing}>
-        <p>Category: {this.props.category.title}</p>
+        key={this.props.category.id}>
+        <p onDoubleClick={this.handleEditing}>Category: {this.props.category.title}</p>
         <button onClick={this.handleDelete}>delete</button>
         {renderIf(this.state.editing,
           <CategoryForm
@@ -46,22 +45,13 @@ class CategoryItem extends React.Component {
 
         <ExpenseForm
           categoryId={this.props.category.id}
-          buttonText='create expense'
+          buttonText='create'
           onComplete={this.props.expenseCreate}/>
 
 
         {renderIf(this.props.expenses[this.props.category.id],
           this.props.expenses[this.props.category.id].map(expense => <ExpenseItem key={expense.id} expense={expense} />)
         )}
-        {/* {this.props.expenses ?
-          this.props.expenses[this.props.category.id].map(expense =>
-            <ExpenseItem
-              expense={expense}
-              key={expense.id}/>
-          )
-          :
-          undefined
-        } */}
       </div>
     );
   };

@@ -9,17 +9,15 @@ import {expenseDelete} from '../../../actions/expense-actions';
 class ExpenseItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      expense: this.props.expense ? this.props.expense : {},
-      editing: false,
-    };
+    this.state = this.props.expense;
+    this.state.editing = false;
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEditing = this.handleEditing.bind(this);
   };
 
   handleDelete() {
-    this.props.expenseDelete(this.state.expense);
+    this.props.expenseDelete(this.state);
   };
 
   handleEditing() {
@@ -28,20 +26,20 @@ class ExpenseItem extends React.Component {
 
   render() {
     return (
-      <li
+      <div
         className='expense-item'
         key={this.props.expense.id}
         onDoubleClick={this.handleEditing}>
         <p>Name: {this.props.expense.name}</p>
         <p>Cost: {this.props.expense.cost}</p>
-        <button onClick={this.handleDelete}>delete expense</button>
+        <button onClick={this.handleDelete}>delete</button>
         {renderIf(this.state.editing,
           <ExpenseForm
-            expense={this.state.expense}
+            expense={this.state}
             buttonText='update'
             onComplete={this.props.expenseUpdate} />
         )}
-      </li>
+      </div>
     );
   };
 }
