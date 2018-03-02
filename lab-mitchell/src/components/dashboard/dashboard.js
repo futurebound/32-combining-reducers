@@ -35,17 +35,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, getState) => ({
   categoryCreate: category => dispatch(categoryCreate(category)),
-  // expenseCreate: expense => dispatch(expenseCreate(expense)),
-  // expenseUpdate: expense => dispatch(expenseUpdate(expense)),
-  // expenseDelete: expense => dispatch(expenseDelete(expense)),
-
-  // dashboardCategoryCreate is now on dashboard.props.dCC or this.props.dCC
-  // category comes from form data
-  // returns a function thats invoked
-  // that calls ACTION categoryCreate
-  // that takes category as an argument
 });
 
-//THESE DO NEED TO BE IN THIS ORDER, configuring dashboard to be exported properly
-//REUSE THESE FOR EVERY COMPONENT THAT NEEDS ACCESS TO STORE, JUST SWAP OUT DASHBOARD FOR THEIR COMPONENT NAME
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

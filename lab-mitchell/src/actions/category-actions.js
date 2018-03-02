@@ -1,11 +1,9 @@
 import uuid from 'uuid/v4';
 
-//ASSUMING THAT WE WILL BE PASSING CATEGORY AS AN ENTIRE OBJECT WITH CAPTURED FORM FIELD DATA, APPENDING ID AND TIMESTAMP ON IT, AND SENDING IT OFF TO THE STORE, PASSING THE ENTIRE CATEGORY THING AS THE PAYLOAD
-
 export const categoryCreate = category => {
   category.id = uuid();
-  category.timestamp = new Date(); //for example only
-  return { // THIS IS THE ACTUAL ACTION, HAS TYPE AND PAYLOAD
+  category.timestamp = new Date();
+  return {
     type: 'CATEGORY_CREATE',
     payload: category,
   };

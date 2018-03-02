@@ -3,7 +3,6 @@ require('jest');
 
 describe('category reducer', function() {
   it('should return initial state on first call', () => {
-    // REDUCER() WHEN CALLED EXPECTS AN ACTION TO BE PASSED
     expect(reducer([], {})).toEqual([]);
   });
   it('should handle CATEGORY_CREATE', () => {
