@@ -30,7 +30,7 @@ class ExpenseItem extends React.Component {
         className='expense-item'
         key={this.props.expense.id}
         onDoubleClick={this.handleEditing}>
-        <p>Name: {this.props.expense.name}</p>
+        <p>Expense: {this.props.expense.name}</p>
         <p>Cost: {this.props.expense.cost}</p>
         <button onClick={this.handleDelete}>delete</button>
         {renderIf(this.state.editing,
